@@ -1,5 +1,8 @@
 # Phash
 
+[![Gem Version](https://badge.fury.io/rb/phash-rb.svg)](https://badge.fury.io/rb/phash-rb)
+[![Test](https://github.com/khasinski/phash-rb/workflows/Phash-rb/badge.svg)](https://github.com/khasinski/phash-rb/actions/workflows/main.yml)
+
 Phashion replacement without native extension (however it currently relies on libvips). Compatible with pHash 0.9.6.
 
 ## Requirements
