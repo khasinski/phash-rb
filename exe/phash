@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/phash"
+
+filename = ARGV[0]
+
+begin
+  puts Phash.fingerprint(filename)
+rescue => e
+  puts "Failed to compute pHash for #{filename}."
+  puts e
+  exit 1
+end

@@ -1,0 +1,30 @@
+PATH
+  remote: .
+  specs:
+    phash-rb (0.1.0)
+      matrix
+      ruby-vips (~> 2.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ffi (1.17.1-arm64-darwin)
+    logger (1.6.5)
+    matrix (0.4.2)
+    minitest (5.25.4)
+    rake (13.2.1)
+    ruby-vips (2.2.2)
+      ffi (~> 1.12)
+      logger
+
+PLATFORMS
+  arm64-darwin-24
+  ruby
+
+DEPENDENCIES
+  minitest (~> 5.16)
+  phash-rb!
+  rake (~> 13.0)
+
+BUNDLED WITH
+   2.5.22
