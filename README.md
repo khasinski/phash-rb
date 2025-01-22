@@ -55,7 +55,7 @@ Phash::Image.new(filename1).fingerprint # 3714852948054213970
 Fingerprint is also available in a command `phash`:
 
 ```bash
-$ phash filename1
+$ phash test/fixtures/test.jpg
 3714852948054213970
 ```
 
