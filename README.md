@@ -1,9 +1,13 @@
 # Phash
 
-Phashion replacement without native dependencies. Compatible with pHash 0.9.6.
+Phashion replacement without native extension (however it currently relies on libvips). Compatible with pHash 0.9.6.
+
+## Requirements
+
+- libvips
+- Ruby 3.0.0 or later
 
 ## Installation
-
 
 ```bash
 bundle add phash-rb
