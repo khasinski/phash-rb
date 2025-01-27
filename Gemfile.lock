@@ -3,16 +3,23 @@ PATH
   specs:
     phash-rb (0.1.0)
       matrix
+      rmagick
       ruby-vips (~> 2.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    ffi (1.17.1)
     ffi (1.17.1-arm64-darwin)
     logger (1.6.5)
     matrix (0.4.2)
     minitest (5.25.4)
+    observer (0.1.2)
+    pkg-config (1.5.9)
     rake (13.2.1)
+    rmagick (6.1.0)
+      observer (~> 0.1)
+      pkg-config (~> 1.4)
     ruby-vips (2.2.2)
       ffi (~> 1.12)
       logger
