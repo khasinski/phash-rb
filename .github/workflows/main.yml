@@ -18,16 +18,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Install libvips & imagemagick
+      run: |
+        sudo apt-get update
+        # we only need the library
+        sudo apt-get install --no-install-recommends libvips imagemagick
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
-    - name: Install libvips
-      run: |
-        sudo apt-get update
-        # we only need the library
-        sudo apt-get install --no-install-recommends libvips
     - name: Install dependencies
       run: bundle install --jobs 4 --retry 3
     - name: Run the tests
