@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "ruby-vips", "~> 2.0"
   spec.add_dependency "matrix"
+  spec.add_dependency "rmagick"
 end
