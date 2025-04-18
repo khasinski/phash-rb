@@ -59,6 +59,12 @@ $ phash test/fixtures/test.jpg
 3714852948054213970
 ```
 
+Additionally you can pass `Vips::Image` directly to fingerprint function:
+```ruby
+image.class # Vips::Image
+Phash::Image.new(image).fingerprint # 3714852948054213970
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
