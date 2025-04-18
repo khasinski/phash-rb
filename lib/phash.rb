@@ -10,8 +10,8 @@ module Phash
   CIMG_V = CIMG_PI / 2 / 32
   CIMG_SCALE = 2**8 + 1
 
-  def self.fingerprint(file)
-    img = Vips::Image.new_from_file(file)
+  def self.fingerprint(path_or_img)
+    img = path_or_img.is_a?(Vips::Image) ? path_or_img : Vips::Image.new_from_file(path_or_img)
     #Y = (66*R + 129*G + 25*B + 128)/256 + 16
     img = img * [66.0 / 256, 129.0 / 256, 25.0 / 256]
     r, g, b = img.bandsplit
