@@ -43,11 +43,26 @@ module Phash
     end
   end
 
+  def self.large_image?(img)
+    img.width * img.height > 250_000
+  end
+
   def self.sample(img)
-    w, h = img.width / 32.0, img.height / 32.0
-    src = img.to_a
-    Matrix.build(32, 32) do |y, x|
-      src[y*h][x*w][0] / CIMG_SCALE
+    w, h = img.width, img.height
+    w_step = w / 32.0
+    h_step = h / 32.0
+
+    if large_image?(img)
+      # Large images: use getpoint to avoid copying entire image to Ruby array
+      Matrix.build(32, 32) do |y, x|
+        img.getpoint((x * w_step).to_i, (y * h_step).to_i)[0] / CIMG_SCALE
+      end
+    else
+      # Small images: to_a is faster than 1024 getpoint calls
+      src = img.to_a
+      Matrix.build(32, 32) do |y, x|
+        src[(y * h_step).to_i][(x * w_step).to_i][0] / CIMG_SCALE
+      end
     end
   end
 end

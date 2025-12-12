@@ -198,6 +198,24 @@ class Phash::IntermediateStateTest < Minitest::Test
       assert_equal 257, Phash::CIMG_SCALE
       assert_equal 2**8 + 1, Phash::CIMG_SCALE
     end
+
+    def test_sampling_implementations_produce_identical_results
+      # Test that both getpoint (large image) and to_a (small image) paths
+      # produce identical fingerprints by stubbing large_image? to force each path
+
+      # Force small image path (to_a)
+      Phash.stub(:large_image?, false) do
+        @fp_small_path = Phash.fingerprint(FIXTURE_PATH)
+      end
+
+      # Force large image path (getpoint)
+      Phash.stub(:large_image?, true) do
+        @fp_large_path = Phash.fingerprint(FIXTURE_PATH)
+      end
+
+      assert_equal @fp_small_path, @fp_large_path,
+        "Both sampling implementations must produce identical fingerprints"
+    end
   end
 
   # Test DCT transform and binarization
