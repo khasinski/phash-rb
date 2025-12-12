@@ -35,11 +35,13 @@ module Phash
   private
 
   def self.ph_dct_matrix
-    v = 1 / Math.sqrt(32)
-    c1 = Math.sqrt(2.0 / 32)
+    @dct_matrix ||= begin
+      v = 1 / Math.sqrt(32)
+      c1 = Math.sqrt(2.0 / 32)
 
-    Matrix.build(32, 32) do |y, x|
-      (y < 1 ? v : c1 * Math.cos(CIMG_V * y * (2*x + 1))).round(6)
+      Matrix.build(32, 32) do |y, x|
+        (y < 1 ? v : c1 * Math.cos(CIMG_V * y * (2*x + 1))).round(6)
+      end
     end
   end
 
