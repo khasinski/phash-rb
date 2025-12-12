@@ -30,7 +30,7 @@ end
 def compare_images(file1, file2)
   fp1 = Phash.fingerprint(file1)
   fp2 = Phash.fingerprint(file2)
-  distance = (fp1 ^ fp2).to_s(2).count('1')
+  distance = Phash.distance(fp1, fp2)
 
   puts "#{file1}: #{fp1}"
   puts "#{file2}: #{fp2}"

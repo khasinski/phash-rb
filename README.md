@@ -52,6 +52,14 @@ require 'phash'
 Phash::Image.new(filename1).fingerprint # 3714852948054213970
 ```
 
+You can also compute the Hamming distance between two fingerprints directly:
+
+```ruby
+fp1 = Phash.fingerprint(filename1)
+fp2 = Phash.fingerprint(filename2)
+Phash.distance(fp1, fp2) # 30
+```
+
 Fingerprint is also available in a command `phash`:
 
 ```bash

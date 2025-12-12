@@ -10,6 +10,10 @@ module Phash
   CIMG_V = CIMG_PI / 2 / 32
   CIMG_SCALE = 2**8 + 1
 
+  def self.distance(fingerprint1, fingerprint2)
+    (fingerprint1 ^ fingerprint2).to_s(2).count('1')
+  end
+
   def self.fingerprint(path_or_img)
     img = path_or_img.is_a?(Vips::Image) ? path_or_img : Vips::Image.new_from_file(path_or_img)
     #Y = (66*R + 129*G + 25*B + 128)/256 + 16

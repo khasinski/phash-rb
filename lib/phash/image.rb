@@ -13,7 +13,7 @@ module Phash
     end
 
     def distance_from(other_image)
-      (fingerprint ^ other_image.fingerprint).to_s(2).count('1')
+      Phash.distance(fingerprint, other_image.fingerprint)
     end
   end
 end

@@ -415,4 +415,37 @@ class Phash::IntermediateStateTest < Minitest::Test
       assert_equal fp_path, fp_vips
     end
   end
+
+  # Test Phash.distance class method
+  class DistanceTest < Minitest::Test
+    def test_distance_identical_fingerprints
+      assert_equal 0, Phash.distance(123456, 123456)
+    end
+
+    def test_distance_one_bit_difference
+      # 0b1000 vs 0b0000 = 1 bit different
+      assert_equal 1, Phash.distance(0b1000, 0b0000)
+    end
+
+    def test_distance_multiple_bits
+      # 0b1111 vs 0b0000 = 4 bits different
+      assert_equal 4, Phash.distance(0b1111, 0b0000)
+    end
+
+    def test_distance_symmetric
+      fp1 = 3714852948054213970
+      fp2 = 5378904591010983442
+      assert_equal Phash.distance(fp1, fp2), Phash.distance(fp2, fp1)
+    end
+
+    def test_distance_matches_image_distance_from
+      fp1 = Phash.fingerprint("test/fixtures/test.jpg")
+      fp2 = Phash.fingerprint("test/fixtures/test.jpg")
+
+      image1 = Phash::Image.new("test/fixtures/test.jpg")
+      image2 = Phash::Image.new("test/fixtures/test.jpg")
+
+      assert_equal Phash.distance(fp1, fp2), image1.distance_from(image2)
+    end
+  end
 end

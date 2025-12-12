@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Cache DCT matrix for faster batch processing
 - Lower required Ruby version from 3.0 to 2.6
 - Improve CLI: support multiple files, `--compare`, `--help`, `--version`
+- Add `Phash.distance(fp1, fp2)` class method for computing Hamming distance
 
 ### 0.2.0
 
