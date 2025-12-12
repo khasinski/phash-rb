@@ -8,7 +8,7 @@ Phashion replacement without native extension (however it currently relies on li
 ## Requirements
 
 - libvips (see requirements for [ruby-vips](https://github.com/libvips/ruby-vips))
-- Ruby 3.0.0 or later
+- Ruby 2.6.0 or later
 
 ## Installation
 
