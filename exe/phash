@@ -2,12 +2,62 @@
 
 require_relative "../lib/phash"
 
-filename = ARGV[0]
+def print_help
+  puts "Usage: phash [options] <file> [file...]"
+  puts ""
+  puts "Commands:"
+  puts "  phash <file>                    Print fingerprint for file"
+  puts "  phash <file1> <file2> ...       Print fingerprints for multiple files"
+  puts "  phash --compare <file1> <file2> Compare two images and print distance"
+  puts ""
+  puts "Options:"
+  puts "  -h, --help                      Show this help message"
+  puts "  -v, --version                   Show version"
+  puts "  -c, --compare                   Compare two images"
+end
 
-begin
+def print_version
+  puts "phash-rb #{Phash::VERSION}"
+end
+
+def compute_fingerprint(filename)
   puts Phash.fingerprint(filename)
 rescue => e
-  puts "Failed to compute pHash for #{filename}."
-  puts e
+  warn "Failed to compute pHash for #{filename}: #{e.message}"
   exit 1
+end
+
+def compare_images(file1, file2)
+  fp1 = Phash.fingerprint(file1)
+  fp2 = Phash.fingerprint(file2)
+  distance = (fp1 ^ fp2).to_s(2).count('1')
+
+  puts "#{file1}: #{fp1}"
+  puts "#{file2}: #{fp2}"
+  puts "Hamming distance: #{distance}"
+  puts distance < 10 ? "Result: likely duplicates" : "Result: different images"
+rescue => e
+  warn "Failed to compare images: #{e.message}"
+  exit 1
+end
+
+if ARGV.empty? || ARGV.include?("-h") || ARGV.include?("--help")
+  print_help
+  exit 0
+end
+
+if ARGV.include?("-v") || ARGV.include?("--version")
+  print_version
+  exit 0
+end
+
+if ARGV.include?("-c") || ARGV.include?("--compare")
+  args = ARGV.reject { |a| a == "-c" || a == "--compare" }
+  if args.size != 2
+    warn "Error: --compare requires exactly 2 files"
+    exit 1
+  end
+  compare_images(args[0], args[1])
+else
+  ARGV.each { |file| compute_fingerprint(file) }
 end

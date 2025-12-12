@@ -57,6 +57,21 @@ Fingerprint is also available in a command `phash`:
 ```bash
 $ phash test/fixtures/test.jpg
 3714852948054213970
+
+$ phash image1.jpg image2.jpg image3.jpg
+3714852948054213970
+5378904591010983442
+1234567890123456789
+
+$ phash --compare image1.jpg image2.jpg
+image1.jpg: 3714852948054213970
+image2.jpg: 5378904591010983442
+Hamming distance: 30
+Result: different images
+
+$ phash --help
+Usage: phash [options] <file> [file...]
+...
 ```
 
 Additionally you can pass `Vips::Image` directly to fingerprint function:
