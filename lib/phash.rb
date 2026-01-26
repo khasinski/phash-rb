@@ -16,6 +16,8 @@ module Phash
 
   def self.fingerprint(path_or_img)
     img = path_or_img.is_a?(Vips::Image) ? path_or_img : Vips::Image.new_from_file(path_or_img)
+    # Strip alpha channel if present (4-band images)
+    img = img[0..2] if img.bands == 4
     #Y = (66*R + 129*G + 25*B + 128)/256 + 16
     img = img * [66.0 / 256, 129.0 / 256, 25.0 / 256]
     r, g, b = img.bandsplit

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+### 0.3.1
+
+- Fix fingerprinting for 4-band images (RGBA with alpha channel) on vips 8.15.1+
+
 ### 0.3.0
 
 - Optimize fingerprint calculation for large images (~24x faster for images >500x500)
